@@ -1,13 +1,17 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.OpenAPIWalker = void 0;
-const openapi_types_1 = require("openapi-types");
-const HttpMethods = Object.values(openapi_types_1.OpenAPIV3.HttpMethods);
-class OpenAPIWalker {
-    constructor(doc) {
+import {OpenAPIV3} from "openapi-types";
+import {OpenAPIVisitor} from "./OpenAPIVisitor";
+
+const HttpMethods: string[] = Object.values(OpenAPIV3.HttpMethods);
+
+export class OpenAPIWalker {
+    private readonly doc: OpenAPIV3.Document
+
+    constructor(doc: any) {
         this.doc = doc;
+
     }
-    walk(visitor) {
+
+    walk(visitor: OpenAPIVisitor) {
         this.walkDocument(visitor);
         this.walkPaths(visitor);
         this.walkTags(visitor);
@@ -15,15 +19,17 @@ class OpenAPIWalker {
             visitor.finish();
         }
     }
-    walkDocument(visitor, doc) {
+
+    private walkDocument(visitor: OpenAPIVisitor, doc?: OpenAPIV3.Document) {
         if (!doc) {
             doc = this.doc;
         }
         if (visitor.visitDocument) {
-            visitor.visitDocument(doc);
+            visitor.visitDocument(doc)
         }
     }
-    walkPaths(visitor, paths) {
+
+    private walkPaths(visitor: OpenAPIVisitor, paths?: OpenAPIV3.PathsObject) {
         if (!paths) {
             paths = this.doc.paths;
         }
@@ -31,40 +37,44 @@ class OpenAPIWalker {
             return;
         }
         for (const path in paths) {
-            let pathItem = paths[path];
+            let pathItem: OpenAPIV3.PathItemObject = paths[path] as OpenAPIV3.PathItemObject;
+
             // Resolve $ref at path level
             if ('$ref' in pathItem) {
-                const ref = pathItem['$ref'];
+                const ref = (pathItem as any)['$ref'];
                 pathItem = this.resolvePathRef(ref);
             }
-            let method;
-            let operation;
+
+            let method: string;
+            let operation: any;
             for ([method, operation] of Object.entries(pathItem)) {
                 if (!HttpMethods.includes(method)) {
                     continue;
                 }
                 if (!operation.tags || operation.tags.length === 0) {
-                    operation.tags = ['default'];
+                    operation.tags = ['default']
                 }
                 if (operation && visitor.visitOperation) {
-                    const context = { pattern: path, path: pathItem, method: method };
+                    const context = {pattern: path, path: pathItem, method: method as OpenAPIV3.HttpMethods};
                     visitor.visitOperation(operation, context);
                 }
             }
         }
     }
-    resolvePathRef(ref) {
+
+    private resolvePathRef(ref: string): OpenAPIV3.PathItemObject {
         const refPath = ref.split('/').slice(1);
-        let schema = this.doc;
+        let schema: any = this.doc;
         for (const segment of refPath) {
             schema = schema[segment];
             if (!schema) {
                 throw new Error(`Path $ref not found: '${ref}'`);
             }
         }
-        return schema;
+        return schema as OpenAPIV3.PathItemObject;
     }
-    walkTags(visitor, tags) {
+
+    private walkTags(visitor: OpenAPIVisitor, tags?: OpenAPIV3.TagObject[]) {
         if (!tags) {
             tags = this.doc.tags;
         }
@@ -79,5 +89,3 @@ class OpenAPIWalker {
         }
     }
 }
-exports.OpenAPIWalker = OpenAPIWalker;
-//# sourceMappingURL=OpenAPIWalker.js.map

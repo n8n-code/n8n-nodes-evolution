@@ -1,6 +1,6 @@
 {
   "name": "@n8n-dev/n8n-nodes-evolution",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "n8n community node for Evolution API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
