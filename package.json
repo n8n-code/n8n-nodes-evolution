@@ -1,6 +1,6 @@
 {
   "name": "@n8n-dev/n8n-nodes-evolution",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "n8n community node for Evolution API",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
@@ -8,6 +8,9 @@
     "build": "tsc && mkdir -p dist/lib && cp -r lib/. dist/lib/",
     "test": "echo \"no tests yet\""
   },
+  "files": [
+    "dist"
+  ],
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
