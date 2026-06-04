@@ -17,6 +17,15 @@ export class EvolutionApi implements ICredentialType {
 
 	properties: INodeProperties[] = [
 		{
+			displayName: 'Base URL',
+			name: 'url',
+			type: 'string',
+			default: '',
+			required: true,
+			placeholder: 'https://evolution-example',
+			description: 'The base URL of your Evolution API server',
+		},
+		{
 			displayName: 'API Key',
 			name: 'apiKey',
 			type: 'string',
@@ -37,7 +46,7 @@ export class EvolutionApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: 'https://evolution-example',
+			baseURL: '={{$credentials.url}}',
 			url: '/',
 			method: 'GET',
 		},

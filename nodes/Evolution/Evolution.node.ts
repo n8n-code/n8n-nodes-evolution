@@ -15,7 +15,7 @@ export class Evolution implements INodeType {
 		group: ['input'],
 		version: 1,
 		subtitle: '={{\$parameter["operation"] + ": " + \$parameter["resource"]}}',
-		description: 'n8n community node for Evolution API - WhatsApp Business API',
+		description: 'n8n community node for Evolution API (WhatsApp)',
 		defaults: { name: 'Evolution' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
@@ -27,7 +27,7 @@ export class Evolution implements INodeType {
 			},
 		],
 		requestDefaults: {
-			baseURL: 'https://evolution-example',
+			baseURL: '={{\$credentials.url}}',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
