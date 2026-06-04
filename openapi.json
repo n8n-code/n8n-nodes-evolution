@@ -1,0 +1,5882 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Evolution API",
+    "version": "2.1.1"
+  },
+  "servers": [
+    {
+      "url": "https://{server-url}",
+      "variables": {
+        "server-url": {
+          "default": "evolution-example",
+          "description": "The URL of your EvolutionAPI server"
+        }
+      },
+      "description": "Your instance domain"
+    }
+  ],
+  "paths": {
+    "/instance/create": {
+      "post": {
+        "operationId": "createInstance",
+        "summary": "Create Instance",
+        "tags": [
+          "Instance Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "instanceName",
+                  "integration"
+                ],
+                "properties": {
+                  "instanceName": {
+                    "type": "string",
+                    "description": "instance (Instance name)"
+                  },
+                  "token": {
+                    "type": "string",
+                    "description": "apikey (Enter or leave empty to create dynamically)"
+                  },
+                  "qrcode": {
+                    "type": "boolean",
+                    "description": "Create QR Code automatically after creation"
+                  },
+                  "number": {
+                    "type": "string",
+                    "description": "559999999999 (Instance owner number with Country Code)"
+                  },
+                  "integration": {
+                    "type": "string",
+                    "description": "WhatsApp engine",
+                    "enum": [
+                      "WHATSAPP-BAILEYS",
+                      "WHATSAPP-BUSINESS"
+                    ]
+                  },
+                  "rejectCall": {
+                    "type": "boolean",
+                    "description": "Reject WhatsApp calls automatically"
+                  },
+                  "msgCall": {
+                    "type": "string",
+                    "description": "Message to be sent when a call is rejected automatically"
+                  },
+                  "groupsIgnore": {
+                    "type": "boolean",
+                    "description": "Ignore group messages"
+                  },
+                  "alwaysOnline": {
+                    "type": "boolean",
+                    "description": "Keep WhatsApp always online"
+                  },
+                  "readMessages": {
+                    "type": "boolean",
+                    "description": "Send read receipts to received messages"
+                  },
+                  "readStatus": {
+                    "type": "boolean",
+                    "description": "Show sent messages read status"
+                  },
+                  "syncFullHistory": {
+                    "type": "boolean",
+                    "description": "Syncronize full WhatsApp history with EvolutionAPI"
+                  },
+                  "proxyHost": {
+                    "type": "string",
+                    "description": "proxy host"
+                  },
+                  "proxyPort": {
+                    "type": "string",
+                    "description": "proxy port"
+                  },
+                  "proxyProtocol": {
+                    "type": "string",
+                    "description": "proxy protocol"
+                  },
+                  "proxyUsername": {
+                    "type": "string",
+                    "description": "proxy Username"
+                  },
+                  "proxyPassword": {
+                    "type": "string",
+                    "description": "proxy password"
+                  },
+                  "webhook": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string",
+                        "description": "The URL of the webhook."
+                      },
+                      "byEvents": {
+                        "type": "boolean",
+                        "description": "Enable Webhook by events"
+                      },
+                      "base64": {
+                        "type": "boolean",
+                        "description": "Sends files in base64 when available"
+                      },
+                      "headers": {
+                        "type": "object",
+                        "description": "Headers for send the API from webhook",
+                        "properties": {
+                          "autorization": {
+                            "type": "string",
+                            "description": "Your authorization key header"
+                          },
+                          "Content-Type": {
+                            "type": "string",
+                            "description": "content-type"
+                          }
+                        }
+                      },
+                      "events": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "APPLICATION_STARTUP",
+                            "QRCODE_UPDATED",
+                            "MESSAGES_SET",
+                            "MESSAGES_UPSERT",
+                            "MESSAGES_UPDATE",
+                            "MESSAGES_DELETE",
+                            "SEND_MESSAGE",
+                            "CONTACTS_SET",
+                            "CONTACTS_UPSERT",
+                            "CONTACTS_UPDATE",
+                            "PRESENCE_UPDATE",
+                            "CHATS_SET",
+                            "CHATS_UPSERT",
+                            "CHATS_UPDATE",
+                            "CHATS_DELETE",
+                            "GROUPS_UPSERT",
+                            "GROUP_UPDATE",
+                            "GROUP_PARTICIPANTS_UPDATE",
+                            "CONNECTION_UPDATE",
+                            "CALL",
+                            "NEW_JWT_TOKEN",
+                            "TYPEBOT_START",
+                            "TYPEBOT_CHANGE_STATUS"
+                          ]
+                        },
+                        "description": "Events to be sent to the Webhook"
+                      }
+                    },
+                    "description": "Webhook URL"
+                  },
+                  "rabbitmq": {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "Enable RabbitMQ"
+                      },
+                      "events": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "APPLICATION_STARTUP",
+                            "QRCODE_UPDATED",
+                            "MESSAGES_SET",
+                            "MESSAGES_UPSERT",
+                            "MESSAGES_UPDATE",
+                            "MESSAGES_DELETE",
+                            "SEND_MESSAGE",
+                            "CONTACTS_SET",
+                            "CONTACTS_UPSERT",
+                            "CONTACTS_UPDATE",
+                            "PRESENCE_UPDATE",
+                            "CHATS_SET",
+                            "CHATS_UPSERT",
+                            "CHATS_UPDATE",
+                            "CHATS_DELETE",
+                            "GROUPS_UPSERT",
+                            "GROUP_UPDATE",
+                            "GROUP_PARTICIPANTS_UPDATE",
+                            "CONNECTION_UPDATE",
+                            "LABELS_EDIT",
+                            "LABELS_ASSOCIATION",
+                            "CALL",
+                            "TYPEBOT_START",
+                            "TYPEBOT_CHANGE_STATUS"
+                          ]
+                        },
+                        "description": "Events to be sent to the RabbitMQ"
+                      }
+                    }
+                  },
+                  "sqs": {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "Enable SQS"
+                      },
+                      "events": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "APPLICATION_STARTUP",
+                            "QRCODE_UPDATED",
+                            "MESSAGES_SET",
+                            "MESSAGES_UPSERT",
+                            "MESSAGES_UPDATE",
+                            "MESSAGES_DELETE",
+                            "SEND_MESSAGE",
+                            "CONTACTS_SET",
+                            "CONTACTS_UPSERT",
+                            "CONTACTS_UPDATE",
+                            "PRESENCE_UPDATE",
+                            "CHATS_SET",
+                            "CHATS_UPSERT",
+                            "CHATS_UPDATE",
+                            "CHATS_DELETE",
+                            "GROUPS_UPSERT",
+                            "GROUP_UPDATE",
+                            "GROUP_PARTICIPANTS_UPDATE",
+                            "CONNECTION_UPDATE",
+                            "CALL",
+                            "NEW_JWT_TOKEN",
+                            "TYPEBOT_START",
+                            "TYPEBOT_CHANGE_STATUS"
+                          ]
+                        },
+                        "description": "Events to be sent to the SQS"
+                      }
+                    },
+                    "description": "Enable SQS"
+                  },
+                  "chatwootAccountId": {
+                    "type": "integer",
+                    "description": "Chatwoot account ID"
+                  },
+                  "chatwootToken": {
+                    "type": "string",
+                    "description": "Chatwoot authentication token"
+                  },
+                  "chatwootUrl": {
+                    "type": "string",
+                    "description": "Chatwoot server URL"
+                  },
+                  "chatwootSignMsg": {
+                    "type": "boolean",
+                    "description": "Send message signature on Chatwoot"
+                  },
+                  "chatwootReopenConversation": {
+                    "type": "boolean",
+                    "description": "Reopen conversation on Chatwoot"
+                  },
+                  "chatwootConversationPending": {
+                    "type": "boolean",
+                    "description": "TODO"
+                  },
+                  "chatwootImportContacts": {
+                    "type": "boolean",
+                    "description": "Import Chatwoot contacts"
+                  },
+                  "chatwootNameInbox": {
+                    "type": "string",
+                    "description": "Name inbox chatwoot"
+                  },
+                  "chatwootMergeBrazilContacts": {
+                    "type": "boolean",
+                    "description": "TODO"
+                  },
+                  "chatwootImportMessages": {
+                    "type": "boolean",
+                    "description": "Import chatwoot messages"
+                  },
+                  "chatwootDaysLimitImportMessages": {
+                    "type": "integer",
+                    "description": "Limit message import chatwoot"
+                  },
+                  "chatwootOrganization": {
+                    "type": "string",
+                    "description": "Evolution Bot"
+                  },
+                  "chatwootLogo": {
+                    "type": "string",
+                    "description": "https://evolution-api.com/files/evolution-api-favicon.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "instance": {
+                      "type": "object",
+                      "properties": {
+                        "instanceName": {
+                          "type": "string",
+                          "description": "The name of the instance"
+                        },
+                        "instanceId": {
+                          "type": "string",
+                          "description": "The unique identifier for the instance"
+                        },
+                        "webhook_wa_business": {
+                          "type": "string",
+                          "description": "The webhook URL for WhatsApp Business integration"
+                        },
+                        "access_token_wa_business": {
+                          "type": "string",
+                          "description": "The access token for WhatsApp Business"
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The current status of the instance"
+                        }
+                      }
+                    },
+                    "hash": {
+                      "type": "object",
+                      "properties": {
+                        "apikey": {
+                          "type": "string",
+                          "description": "The API key for authentication"
+                        }
+                      }
+                    },
+                    "settings": {
+                      "type": "object",
+                      "properties": {
+                        "reject_call": {
+                          "type": "boolean",
+                          "description": "Indicates whether calls are rejected"
+                        },
+                        "msg_call": {
+                          "type": "string",
+                          "description": "Message to be sent when a call is rejected"
+                        },
+                        "groups_ignore": {
+                          "type": "boolean",
+                          "description": "Indicates whether groups are ignored"
+                        },
+                        "always_online": {
+                          "type": "boolean",
+                          "description": "Indicates whether the instance is always online"
+                        },
+                        "read_messages": {
+                          "type": "boolean",
+                          "description": "Indicates whether messages are marked as read"
+                        },
+                        "read_status": {
+                          "type": "boolean",
+                          "description": "Indicates whether status updates are marked as read"
+                        },
+                        "sync_full_history": {
+                          "type": "boolean",
+                          "description": "Indicates whether the full message history is synchronized"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "instance": {
+                      "instanceName": "teste-docs",
+                      "instanceId": "af6c5b7c-ee27-4f94-9ea8-192393746ddd",
+                      "webhook_wa_business": null,
+                      "access_token_wa_business": "",
+                      "status": "created"
+                    },
+                    "hash": {
+                      "apikey": "123456"
+                    },
+                    "settings": {
+                      "reject_call": false,
+                      "msg_call": "",
+                      "groups_ignore": true,
+                      "always_online": false,
+                      "read_messages": false,
+                      "read_status": false,
+                      "sync_full_history": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "The HTTP status of the response"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "The error message indicating the type of error"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of detailed error messages"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": 403,
+                    "error": "Forbidden",
+                    "response": {
+                      "message": [
+                        "This name \"instance-example-name\" is already in use."
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instance/fetchInstances": {
+      "get": {
+        "operationId": "fetchInstances",
+        "summary": "Fetch Instances",
+        "tags": [
+          "Instance Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instanceName",
+            "description": "Name of the instance to be fetched",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instanceId",
+            "description": "ID of the instance to be fetched",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Returns the instance with the name informed in the parameter, or all the instances if empty.",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "The HTTP status of the response"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "The error message indicating the type of error"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of detailed error messages"
+                        }
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "instance": {
+                        "instanceName": "example-name",
+                        "instanceId": "421a4121-a3d9-40cc-a8db-c3a1df353126",
+                        "owner": "553198296801@s.whatsapp.net",
+                        "profileName": "Guilherme Gomes",
+                        "profilePictureUrl": null,
+                        "profileStatus": "This is the profile status.",
+                        "status": "open",
+                        "serverUrl": "https://example.evolution-api.com",
+                        "apikey": "B3844804-481D-47A4-B69C-F14B4206EB56",
+                        "integration": {
+                          "integration": "WHATSAPP-BAILEYS",
+                          "webhook_wa_business": "https://example.evolution-api.com/webhook/whatsapp/db5e11d3-ded5-4d91-b3fb-48272688f206"
+                        }
+                      }
+                    },
+                    {
+                      "instance": {
+                        "instanceName": "teste-docs",
+                        "instanceId": "af6c5b7c-ee27-4f94-9ea8-192393746ddd",
+                        "status": "close",
+                        "serverUrl": "https://example.evolution-api.com",
+                        "apikey": "123456",
+                        "integration": {
+                          "token": "123456",
+                          "webhook_wa_business": "https://example.evolution-api.com/webhook/whatsapp/teste-docs"
+                        }
+                      }
+                    }
+                  ],
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instance/connect/{instance}": {
+      "get": {
+        "operationId": "instanceConnect",
+        "summary": "Instances Connect",
+        "tags": [
+          "Instance Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance to connect",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "number",
+            "description": "Phone number (with country code) to be connected",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Generates and returns the QR code for WhatsApp connection",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pairingCode": {
+                      "type": "string",
+                      "description": "The unique code used for pairing a device or account."
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "A specific code associated with the pairing process. This may include tokens or other identifiers."
+                    },
+                    "count": {
+                      "type": "integer",
+                      "description": "The count or number of attempts or instances related to the pairing process."
+                    }
+                  },
+                  "example": {
+                    "pairingCode": "WZYEH1YY",
+                    "code": "2@y8eK+bjtEjUWy9/FOM...",
+                    "count": 1
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Instance not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "The HTTP status of the response"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "The error message indicating the type of error"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of detailed error messages"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": 404,
+                    "error": "Not Found",
+                    "response": {
+                      "message": [
+                        "The \"invalid-instance\" instance does not exist"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instance/restart/{instance}": {
+      "put": {
+        "operationId": "restartInstance",
+        "summary": "Restart Instance",
+        "tags": [
+          "Instance Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance to restart",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Restarts the instance",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "instance": {
+                      "type": "object",
+                      "properties": {
+                        "instanceName": {
+                          "type": "string",
+                          "description": "The name of the instance."
+                        },
+                        "state": {
+                          "type": "string",
+                          "description": "The state of the instance."
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "instance": {
+                      "instanceName": "teste-docs",
+                      "state": "open"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Instance not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "The HTTP status of the response"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "The error message indicating the type of error"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of detailed error messages"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": 404,
+                    "error": "Not Found",
+                    "response": {
+                      "message": [
+                        "The \"invalid-instance\" instance does not exist"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instance/connectionState/{instance}": {
+      "get": {
+        "operationId": "connectionState",
+        "summary": "Connection State",
+        "tags": [
+          "Instance Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance to get status connect",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Gets the state of the connection",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "instance": {
+                      "type": "object",
+                      "properties": {
+                        "instanceName": {
+                          "type": "string",
+                          "description": "The name of the instance."
+                        },
+                        "state": {
+                          "type": "string",
+                          "description": "The state of the instance."
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "instance": {
+                      "instanceName": "teste-docs",
+                      "state": "open"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Instance not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "The HTTP status of the response"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "The error message indicating the type of error"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of detailed error messages"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": 404,
+                    "error": "Not Found",
+                    "response": {
+                      "message": [
+                        "The \"invalid-instance\" instance does not exist"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instance/logout/{instance}": {
+      "delete": {
+        "operationId": "logoutInstance",
+        "summary": "Logout Instance",
+        "tags": [
+          "Instance Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance to logout",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Makes logout on instance",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the response."
+                    },
+                    "error": {
+                      "type": "boolean",
+                      "description": "Indicates whether an error occurred."
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "description": "A message related to the response."
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": "SUCCESS",
+                    "error": false,
+                    "response": {
+                      "message": "Instance logged out"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Instance not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "The HTTP status of the response"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "The error message indicating the type of error"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of detailed error messages"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": 404,
+                    "error": "Not Found",
+                    "response": {
+                      "message": [
+                        "The \"invalid-instance\" instance does not exist"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instance/delete/{instance}": {
+      "delete": {
+        "operationId": "deleteInstance",
+        "summary": "Delete Instance",
+        "tags": [
+          "Instance Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Delete instance",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the response."
+                    },
+                    "error": {
+                      "type": "boolean",
+                      "description": "Indicates whether an error occurred."
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "description": "A message related to the response."
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": "SUCCESS",
+                    "error": false,
+                    "response": {
+                      "message": "Instance deleted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Instance not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "The HTTP status of the response"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "The error message indicating the type of error"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of detailed error messages"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": 404,
+                    "error": "Not Found",
+                    "response": {
+                      "message": [
+                        "The \"invalid-instance\" instance does not exist"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instance/setPresence/{instance}": {
+      "post": {
+        "operationId": "setPresence",
+        "summary": "Set Presence",
+        "tags": [
+          "Instance Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance to connect",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Deletes instance",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "presence"
+                ],
+                "properties": {
+                  "presence": {
+                    "type": "string",
+                    "enum": [
+                      "available",
+                      "unavailable"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          },
+          "404": {
+            "description": "Instance not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "The HTTP status of the response"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "The error message indicating the type of error"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of detailed error messages"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": 404,
+                    "error": "Not Found",
+                    "response": {
+                      "message": [
+                        "The \"invalid-instance\" instance does not exist"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webhook/set/{instance}": {
+      "post": {
+        "operationId": "setWebhook",
+        "summary": "Set Webhook",
+        "tags": [
+          "Webhook Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Set Webhook for instance",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "url",
+                  "events",
+                  "enabled",
+                  "webhookByEvents",
+                  "webhookBase64"
+                ],
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "enable webhook to instance"
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "Webhook URL"
+                  },
+                  "webhookByEvents": {
+                    "type": "boolean",
+                    "description": "Enables Webhook by events"
+                  },
+                  "webhookBase64": {
+                    "type": "boolean",
+                    "description": "Sends files in base64 when available"
+                  },
+                  "events": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "APPLICATION_STARTUP",
+                        "QRCODE_UPDATED",
+                        "MESSAGES_SET",
+                        "MESSAGES_UPSERT",
+                        "MESSAGES_UPDATE",
+                        "MESSAGES_DELETE",
+                        "SEND_MESSAGE",
+                        "CONTACTS_SET",
+                        "CONTACTS_UPSERT",
+                        "CONTACTS_UPDATE",
+                        "PRESENCE_UPDATE",
+                        "CHATS_SET",
+                        "CHATS_UPSERT",
+                        "CHATS_UPDATE",
+                        "CHATS_DELETE",
+                        "GROUPS_UPSERT",
+                        "GROUP_UPDATE",
+                        "GROUP_PARTICIPANTS_UPDATE",
+                        "CONNECTION_UPDATE",
+                        "CALL",
+                        "NEW_JWT_TOKEN",
+                        "TYPEBOT_START",
+                        "TYPEBOT_CHANGE_STATUS"
+                      ]
+                    },
+                    "description": "Events to be sent to the Webhook"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "webhook": {
+                      "type": "object",
+                      "properties": {
+                        "instanceName": {
+                          "type": "string",
+                          "description": "The name of the instance."
+                        },
+                        "webhook": {
+                          "type": "object",
+                          "properties": {
+                            "url": {
+                              "type": "string",
+                              "description": "The URL of the webhook."
+                            },
+                            "events": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "List of events the webhook is subscribed to."
+                            },
+                            "enabled": {
+                              "type": "boolean",
+                              "description": "Indicates whether the webhook is enabled."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "webhook": {
+                      "instanceName": "teste-docs",
+                      "webhook": {
+                        "url": "https://example.com",
+                        "events": [
+                          "APPLICATION_STARTUP"
+                        ],
+                        "enabled": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webhook/find/{instance}": {
+      "get": {
+        "operationId": "findWebhook",
+        "summary": "Find Webhook",
+        "tags": [
+          "Webhook Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Fetch Webhook configuration",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "description": "Indicates whether the webhook is enabled."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the webhook."
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of events the webhook is subscribed to."
+                    }
+                  },
+                  "example": {
+                    "enabled": true,
+                    "url": "https://example.com",
+                    "events": [
+                      "APPLICATION_STARTUP"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/settings/set/{instance}": {
+      "post": {
+        "operationId": "setSettings",
+        "summary": "Set Settings",
+        "tags": [
+          "Settings Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Set settings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "rejectCall",
+                  "groupsIgnore",
+                  "alwaysOnline",
+                  "readMessages",
+                  "readStatus",
+                  "syncFullHistory",
+                  "msgCall"
+                ],
+                "properties": {
+                  "rejectCall": {
+                    "type": "boolean",
+                    "description": "Reject calls automatically"
+                  },
+                  "msgCall": {
+                    "type": "string",
+                    "description": "Message to be sent when a call is rejected automatically"
+                  },
+                  "groupsIgnore": {
+                    "type": "boolean",
+                    "description": "Ignore group messages"
+                  },
+                  "alwaysOnline": {
+                    "type": "boolean",
+                    "description": "Always show WhatsApp online"
+                  },
+                  "readMessages": {
+                    "type": "boolean",
+                    "description": "Send read receipts"
+                  },
+                  "readStatus": {
+                    "type": "boolean",
+                    "description": "See message status"
+                  },
+                  "syncFullHistory": {
+                    "type": "boolean",
+                    "description": "Syncronize full WhatsApp history with EvolutionAPI"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "settings": {
+                      "type": "object",
+                      "properties": {
+                        "instanceName": {
+                          "type": "string",
+                          "description": "The name of the instance."
+                        },
+                        "settings": {
+                          "type": "object",
+                          "properties": {
+                            "reject_call": {
+                              "type": "boolean",
+                              "description": "Indicates whether to reject incoming calls."
+                            },
+                            "groups_ignore": {
+                              "type": "boolean",
+                              "description": "Indicates whether to ignore group messages."
+                            },
+                            "always_online": {
+                              "type": "boolean",
+                              "description": "Indicates whether to always keep the instance online."
+                            },
+                            "read_messages": {
+                              "type": "boolean",
+                              "description": "Indicates whether to mark messages as read."
+                            },
+                            "read_status": {
+                              "type": "boolean",
+                              "description": "Indicates whether to read status updates."
+                            },
+                            "sync_full_history": {
+                              "type": "boolean",
+                              "description": "Indicates whether to synchronize full message history."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "settings": {
+                      "instanceName": "teste-docs",
+                      "settings": {
+                        "reject_call": true,
+                        "groups_ignore": true,
+                        "always_online": true,
+                        "read_messages": true,
+                        "read_status": true,
+                        "sync_full_history": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/settings/find/{instance}": {
+      "get": {
+        "operationId": "findWebhook",
+        "summary": "Find Webhook",
+        "tags": [
+          "Webhook Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance to get settings",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Fetch Webhook configuration",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reject_call": {
+                      "type": "boolean",
+                      "description": "Indicates whether to reject incoming calls."
+                    },
+                    "groups_ignore": {
+                      "type": "boolean",
+                      "description": "Indicates whether to ignore group messages."
+                    },
+                    "always_online": {
+                      "type": "boolean",
+                      "description": "Indicates whether to always keep the instance online."
+                    },
+                    "read_messages": {
+                      "type": "boolean",
+                      "description": "Indicates whether to mark messages as read."
+                    },
+                    "read_status": {
+                      "type": "boolean",
+                      "description": "Indicates whether to read status updates."
+                    },
+                    "sync_full_history": {
+                      "type": "boolean",
+                      "description": "Indicates whether to synchronize full message history."
+                    }
+                  },
+                  "example": {
+                    "reject_call": true,
+                    "groups_ignore": true,
+                    "always_online": true,
+                    "read_messages": true,
+                    "read_status": true,
+                    "sync_full_history": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendText/{instance}": {
+      "post": {
+        "operationId": "sendText",
+        "summary": "Send Text",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send plain text message",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "text"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Number to receive the message (with country code)"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Test message to send"
+                  },
+                  "delay": {
+                    "type": "integer",
+                    "description": "Presence time in milliseconds before sending message"
+                  },
+                  "linkPreview": {
+                    "type": "boolean",
+                    "description": "Shows a preview of the target website if there's a link within the message"
+                  },
+                  "mentionsEveryOne": {
+                    "type": "boolean",
+                    "description": "Mentioned everyone when the message send"
+                  },
+                  "mentioned": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "{{remoteJID}}"
+                      ]
+                    },
+                    "description": "Numbers to mention"
+                  },
+                  "quoted": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Quoted message ID"
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "conversation": {
+                            "type": "string",
+                            "description": "Quoted message content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "extendedTextMessage": {
+                          "type": "object",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text message."
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.net",
+                      "fromMe": true,
+                      "id": "BAE594145F4C59B4"
+                    },
+                    "message": {
+                      "extendedTextMessage": {
+                        "text": "Olá!"
+                      }
+                    },
+                    "messageTimestamp": "1717689097",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendMedia/{instance}": {
+      "post": {
+        "operationId": "sendMedia",
+        "summary": "Send Media",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send media message",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "mediatype",
+                  "mimetype",
+                  "caption",
+                  "media",
+                  "fileName"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Number to receive the message (with country code)"
+                  },
+                  "mediatype": {
+                    "type": "string",
+                    "description": "Image, video or document"
+                  },
+                  "mimetype": {
+                    "type": "string",
+                    "description": "image/png"
+                  },
+                  "caption": {
+                    "type": "string",
+                    "description": "Teste de caption"
+                  },
+                  "media": {
+                    "type": "string",
+                    "description": "Url or base64"
+                  },
+                  "fileName": {
+                    "type": "string",
+                    "description": "Image.png"
+                  },
+                  "delay": {
+                    "type": "integer",
+                    "description": "Presence time in milliseconds before sending message"
+                  },
+                  "linkPreview": {
+                    "type": "boolean",
+                    "description": "Shows a preview of the target website if there's a link within the message"
+                  },
+                  "mentionsEveryOne": {
+                    "type": "boolean",
+                    "description": "Mentioned everyone when the message send"
+                  },
+                  "mentioned": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "{{remoteJID}}"
+                      ]
+                    },
+                    "description": "Numbers to mention"
+                  },
+                  "quoted": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Quoted message ID"
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "conversation": {
+                            "type": "string",
+                            "description": "Quoted message content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key of the message, which identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "imageMessage": {
+                          "type": "object",
+                          "properties": {
+                            "url": {
+                              "type": "string",
+                              "description": "The URL of the image."
+                            },
+                            "mimetype": {
+                              "type": "string",
+                              "description": "The MIME type of the image."
+                            },
+                            "caption": {
+                              "type": "string",
+                              "description": "The caption text of the image."
+                            },
+                            "fileSha256": {
+                              "type": "string",
+                              "description": "The SHA-256 hash of the image file."
+                            },
+                            "fileLength": {
+                              "type": "string",
+                              "description": "The length of the image file."
+                            },
+                            "height": {
+                              "type": "integer",
+                              "description": "The height of the image."
+                            },
+                            "width": {
+                              "type": "integer",
+                              "description": "The width of the image."
+                            },
+                            "mediaKey": {
+                              "type": "string",
+                              "description": "The media key of the image."
+                            },
+                            "fileEncSha256": {
+                              "type": "string",
+                              "description": "The SHA-256 hash of the encrypted image file."
+                            },
+                            "directPath": {
+                              "type": "string",
+                              "description": "The direct path to the image."
+                            },
+                            "mediaKeyTimestamp": {
+                              "type": "string",
+                              "description": "The timestamp of the media key."
+                            },
+                            "jpegThumbnail": {
+                              "type": "string",
+                              "description": "The JPEG thumbnail of the image."
+                            },
+                            "contextInfo": {
+                              "type": "object",
+                              "description": "Additional context information."
+                            }
+                          },
+                          "description": "Details of the image message."
+                        }
+                      },
+                      "description": "The message content, which may include various types of messages like text, images, etc."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.net",
+                      "fromMe": true,
+                      "id": "BAE5F5A632EAE722"
+                    },
+                    "message": {
+                      "imageMessage": {
+                        "url": "https://mmg.whatsapp.net/o1/v/t62.7118-2...",
+                        "mimetype": "image/png",
+                        "caption": "Caption text",
+                        "fileSha256": "VbCGkGBv5SZStLD5PHdkBWpQav/lNsXcY...",
+                        "fileLength": "1305757",
+                        "height": 1080,
+                        "width": 1920,
+                        "mediaKey": "aFQK9Ocw5tE7Nf0iBA42Xcb4Dee6G1k/pLL...",
+                        "fileEncSha256": "bGVtYeR3458RwC0p1tsGDNuj+vOu/...",
+                        "directPath": "/o1/v/t62.7118-24/f1/m232/up-oil...",
+                        "mediaKeyTimestamp": "1717775573",
+                        "jpegThumbnail": "/9j/2wBDABALDA4MChAODQ4SERATG...",
+                        "contextInfo": {}
+                      }
+                    },
+                    "messageTimestamp": "1717775575",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendWhatsAppAudio/{instance}": {
+      "post": {
+        "operationId": "sendWhatsAppAudio",
+        "summary": "Send WhatsApp Audio",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "ID of the instance to connect",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send WhatsApp Audio",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "audio"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Number to receive the message (with country code)"
+                  },
+                  "audio": {
+                    "type": "string",
+                    "description": "url or base64 "
+                  },
+                  "delay": {
+                    "type": "integer",
+                    "description": "Presence time in milliseconds before sending message"
+                  },
+                  "linkPreview": {
+                    "type": "boolean",
+                    "description": "Shows a preview of the target website if there's a link within the message"
+                  },
+                  "mentionsEveryOne": {
+                    "type": "boolean",
+                    "description": "Mentioned everyone when the message send"
+                  },
+                  "mentioned": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "{{remoteJID}}"
+                      ]
+                    },
+                    "description": "Numbers to mention"
+                  },
+                  "quoted": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Quoted message ID"
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "conversation": {
+                            "type": "string",
+                            "description": "Quoted message content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key of the message, which identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "audioMessage": {
+                          "type": "object",
+                          "properties": {
+                            "url": {
+                              "type": "string",
+                              "description": "The URL of the audio message."
+                            },
+                            "mimetype": {
+                              "type": "string",
+                              "description": "The MIME type of the audio message."
+                            },
+                            "fileSha256": {
+                              "type": "string",
+                              "description": "The SHA-256 hash of the audio file."
+                            },
+                            "fileLength": {
+                              "type": "string",
+                              "description": "The length of the audio file."
+                            },
+                            "seconds": {
+                              "type": "integer",
+                              "description": "The duration of the audio message in seconds."
+                            },
+                            "ptt": {
+                              "type": "boolean",
+                              "description": "Indicates whether the audio message is a push-to-talk (PTT) message."
+                            },
+                            "mediaKey": {
+                              "type": "string",
+                              "description": "The media key of the audio message."
+                            },
+                            "fileEncSha256": {
+                              "type": "string",
+                              "description": "The SHA-256 hash of the encrypted audio file."
+                            },
+                            "directPath": {
+                              "type": "string",
+                              "description": "The direct path to the audio file."
+                            },
+                            "mediaKeyTimestamp": {
+                              "type": "string",
+                              "description": "The timestamp of the media key."
+                            }
+                          },
+                          "description": "Details of the audio message."
+                        }
+                      },
+                      "description": "The message content, which may include various types of messages like text, images, audio, etc."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.net",
+                      "fromMe": true,
+                      "id": "BAE5EFED2AB0BB9F"
+                    },
+                    "message": {
+                      "audioMessage": {
+                        "url": "https://mmg.whatsapp.net/v/t62.7114-24/21428511_985284763127087_5662928...",
+                        "mimetype": "audio/mp4",
+                        "fileSha256": "DJPBnRns6QADzZNH2j0R88mUtFQ4aiOm9aZf6dio2G0=",
+                        "fileLength": "670662",
+                        "seconds": 42,
+                        "ptt": true,
+                        "mediaKey": "+A3X1Tuyzeh87cCVZpfuKpL3Y4RYdYr3sCDurjSlBTY=",
+                        "fileEncSha256": "s4tKvHOXIZAw5668/Xcy4zoFba4vW8klmNYC78yOPZs=",
+                        "directPath": "/v/t62.7114-24/21428511_985284763127087_5662928477636351284_n.enc...",
+                        "mediaKeyTimestamp": "1717776942"
+                      }
+                    },
+                    "messageTimestamp": "1717776942",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendSticker/{instance}": {
+      "post": {
+        "operationId": "sendSticker",
+        "summary": "Send Sticker",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send Sticker",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "sticker"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Number to receive the message (with country code)"
+                  },
+                  "sticker": {
+                    "type": "string",
+                    "description": "Url or base64 "
+                  },
+                  "delay": {
+                    "type": "integer",
+                    "description": "Presence time in milliseconds before sending message"
+                  },
+                  "linkPreview": {
+                    "type": "boolean",
+                    "description": "Shows a preview of the target website if there's a link within the message"
+                  },
+                  "mentionsEveryOne": {
+                    "type": "boolean",
+                    "description": "Mentioned everyone when the message send"
+                  },
+                  "mentioned": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "{{remoteJID}}"
+                      ]
+                    },
+                    "description": "Numbers to mention"
+                  },
+                  "quoted": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Quoted message ID"
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "conversation": {
+                            "type": "string",
+                            "description": "Quoted message content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/message/sendStatus/{instance}": {
+      "post": {
+        "operationId": "sendStatus",
+        "summary": "Send Status",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Post WhatsApp status (stories)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "caption",
+                  "content",
+                  "backgroundColor",
+                  "font",
+                  "allContacts",
+                  "statusJidList"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "status type",
+                    "enum": [
+                      "text",
+                      "image",
+                      "audio"
+                    ]
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "status type"
+                  },
+                  "caption": {
+                    "type": "string",
+                    "description": "Optional for image or video"
+                  },
+                  "backgroundColor": {
+                    "type": "string",
+                    "description": "Exemple #008000"
+                  },
+                  "font": {
+                    "type": "number",
+                    "description": "1 = SERIF 2 = NORICAN_REGULAR 3 = BRYNDAN_WRITE 4 = BEBASNEUE_REGULAR 5 = OSWALD_HEAVY "
+                  },
+                  "allContacts": {
+                    "type": "boolean",
+                    "description": "true to send to all contacts or false to send to statusJidList below "
+                  },
+                  "statusJidList": {
+                    "type": "array",
+                    "description": "Numbers to send status",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "{{remoteJID}}"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key of the message, which identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "extendedTextMessage": {
+                          "type": "object",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text content of the message."
+                            },
+                            "backgroundArgb": {
+                              "type": "integer",
+                              "description": "The background color of the text message, represented as ARGB integer value."
+                            },
+                            "font": {
+                              "type": "string",
+                              "description": "The font used in the text message."
+                            }
+                          },
+                          "description": "Details of the extended text message."
+                        }
+                      },
+                      "description": "The message content, which may include various types of messages like text, images, etc."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    },
+                    "participant": {
+                      "type": "string",
+                      "description": "The participant in the chat to whom the message was sent."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "status@broadcast",
+                      "fromMe": true,
+                      "id": "BAE5FAB9E65A3DA8"
+                    },
+                    "message": {
+                      "extendedTextMessage": {
+                        "text": "example",
+                        "backgroundArgb": 4294910617,
+                        "font": "FB_SCRIPT"
+                      }
+                    },
+                    "messageTimestamp": "1717691767",
+                    "status": "PENDING",
+                    "participant": "553198296801:17@s.whatsapp.net"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendLocation/{instance}": {
+      "post": {
+        "operationId": "sendLocation",
+        "summary": "Send Location",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send Location",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "name",
+                  "address",
+                  "latitude",
+                  "longitude"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Number to receive the message (with country code)"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name the city"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Location address"
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "description": "Latitude location"
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "description": "Longitude location"
+                  },
+                  "delay": {
+                    "type": "integer",
+                    "description": "Presence time in milliseconds before sending message"
+                  },
+                  "linkPreview": {
+                    "type": "boolean",
+                    "description": "Shows a preview of the target website if there's a link within the message"
+                  },
+                  "mentionsEveryOne": {
+                    "type": "boolean",
+                    "description": "Mentioned everyone when the message send"
+                  },
+                  "mentioned": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "{{remoteJID}}"
+                      ]
+                    },
+                    "description": "Numbers to mention"
+                  },
+                  "quoted": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Quoted message ID"
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "conversation": {
+                            "type": "string",
+                            "description": "Quoted message content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key of the message, which identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "locationMessage": {
+                          "type": "object",
+                          "properties": {
+                            "degreesLatitude": {
+                              "type": "number",
+                              "format": "float",
+                              "description": "The latitude of the location."
+                            },
+                            "degreesLongitude": {
+                              "type": "number",
+                              "format": "float",
+                              "description": "The longitude of the location."
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The name of the location."
+                            },
+                            "address": {
+                              "type": "string",
+                              "description": "The address of the location."
+                            },
+                            "contextInfo": {
+                              "type": "object",
+                              "description": "Additional context information."
+                            }
+                          },
+                          "description": "Details of the location message."
+                        }
+                      },
+                      "description": "The message content, which may include various types of messages like text, images, location, etc."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.net",
+                      "fromMe": true,
+                      "id": "BAE51B6FF4470AF9"
+                    },
+                    "message": {
+                      "locationMessage": {
+                        "degreesLatitude": -19.93359,
+                        "degreesLongitude": -43.93851,
+                        "name": "Palácio da Liberdade",
+                        "address": "Praça da Liberdade, Belo Horizonte, MG 30140-050",
+                        "contextInfo": {}
+                      }
+                    },
+                    "messageTimestamp": "1717779606",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendContact/{instance}": {
+      "post": {
+        "operationId": "sendContact",
+        "summary": "Send Contact",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send Contact",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "contact"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Number to receive the message (with country code)"
+                  },
+                  "contact": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "fullname",
+                        "wuid",
+                        "phoneNumber",
+                        "organization",
+                        "email",
+                        "url"
+                      ],
+                      "properties": {
+                        "fullName": {
+                          "type": "string",
+                          "description": "Contact full name"
+                        },
+                        "wuid": {
+                          "type": "string",
+                          "description": "Phone number non-stylized with country code (553198296801)"
+                        },
+                        "phoneNumber": {
+                          "type": "string",
+                          "description": "Phone number stylized (+55 31 9 9999-9999)"
+                        },
+                        "organization": {
+                          "type": "string",
+                          "description": "Organization name for the contact"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "Contact email address"
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "Page URL"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key of the message, which identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "contactMessage": {
+                          "type": "object",
+                          "properties": {
+                            "displayName": {
+                              "type": "string",
+                              "description": "The display name of the contact."
+                            },
+                            "vcard": {
+                              "type": "string",
+                              "description": "The vCard format contact information."
+                            },
+                            "contextInfo": {
+                              "type": "object",
+                              "description": "Additional context information."
+                            }
+                          },
+                          "description": "Details of the contact message."
+                        }
+                      },
+                      "description": "The message content, which may include various types of messages like text, images, contact, etc."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.net",
+                      "fromMe": true,
+                      "id": "BAE58DA6CBC941BC"
+                    },
+                    "message": {
+                      "contactMessage": {
+                        "displayName": "Guilherme Gomes",
+                        "vcard": "BEGIN:VCARD\nVERSION:3.0\nN:Guilherme Gomes\nFN:Guilherme Gomes\nORG:AtendAI;\nEMAIL:...",
+                        "contextInfo": {}
+                      }
+                    },
+                    "messageTimestamp": "1717780437",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendReaction/{instance}": {
+      "post": {
+        "operationId": "sendReaction",
+        "summary": "Send Reaction",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send Reaction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "object",
+                    "properties": {
+                      "remoteJid": {
+                        "type": "string",
+                        "description": "Chat contact or group remote JID"
+                      },
+                      "fromMe": {
+                        "type": "boolean",
+                        "description": "If the message was sent by the instance owner or not"
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "Message ID"
+                      }
+                    }
+                  },
+                  "reaction": {
+                    "type": "string",
+                    "description": "Reaction emoji",
+                    "example": "🚀"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key of the message, which identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "reactionMessage": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "object",
+                              "properties": {
+                                "remoteJid": {
+                                  "type": "string",
+                                  "description": "The remote Jid of the original message."
+                                },
+                                "fromMe": {
+                                  "type": "boolean",
+                                  "description": "Indicates whether the original message was sent by the user."
+                                },
+                                "id": {
+                                  "type": "string",
+                                  "description": "The ID of the original message."
+                                }
+                              },
+                              "description": "The key of the original message to which the reaction is linked."
+                            },
+                            "text": {
+                              "type": "string",
+                              "description": "The reaction text or emoji."
+                            },
+                            "senderTimestampMs": {
+                              "type": "string",
+                              "description": "The timestamp when the reaction was sent, in milliseconds."
+                            }
+                          },
+                          "description": "Details of the reaction message."
+                        }
+                      },
+                      "description": "The message content, which may include various types of messages like text, images, reaction, etc."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.net",
+                      "fromMe": true,
+                      "id": "BAE569F0E38F858D"
+                    },
+                    "message": {
+                      "reactionMessage": {
+                        "key": {
+                          "remoteJid": "553198296801@s.whatsapp.net",
+                          "fromMe": true,
+                          "id": "BAE58DA6CBC941BC"
+                        },
+                        "text": "🚀",
+                        "senderTimestampMs": "1717781105034"
+                      }
+                    },
+                    "messageTimestamp": "1717781105",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendPoll/{instance}": {
+      "post": {
+        "operationId": "sendPoll",
+        "summary": "Send Poll",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send Poll",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "name",
+                  "selectableCount",
+                  "values"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "{{remoteJid}}"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Main text of the poll"
+                  },
+                  "selectableCount": {
+                    "type": "number",
+                    "description": "Ex: 1"
+                  },
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "Question 1",
+                        "Question 2",
+                        "Question 3"
+                      ]
+                    },
+                    "description": "Values for question"
+                  },
+                  "delay": {
+                    "type": "integer",
+                    "description": "Presence time in milliseconds before sending message"
+                  },
+                  "linkPreview": {
+                    "type": "boolean",
+                    "description": "Shows a preview of the target website if there's a link within the message"
+                  },
+                  "mentionsEveryOne": {
+                    "type": "boolean",
+                    "description": "Mentioned everyone when the message send"
+                  },
+                  "mentioned": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "{{remoteJID}}"
+                      ]
+                    },
+                    "description": "Numbers to mention"
+                  },
+                  "quoted": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Quoted message ID"
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "conversation": {
+                            "type": "string",
+                            "description": "Quoted message content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key of the message, which identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "messageContextInfo": {
+                          "type": "object",
+                          "properties": {
+                            "messageSecret": {
+                              "type": "string",
+                              "description": "The secret of the message context."
+                            }
+                          },
+                          "description": "Information about the context of the message."
+                        },
+                        "pollCreationMessage": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "The name of the poll."
+                            },
+                            "options": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "optionName": {
+                                    "type": "string",
+                                    "description": "The name of the poll option."
+                                  }
+                                }
+                              },
+                              "description": "The options available in the poll."
+                            },
+                            "selectableOptionsCount": {
+                              "type": "integer",
+                              "description": "The number of options that can be selected in the poll."
+                            }
+                          },
+                          "description": "Details of the poll creation message."
+                        }
+                      },
+                      "description": "The message content, which may include various types of messages like text, images, poll creation, etc."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.net",
+                      "fromMe": true,
+                      "id": "BAE53EC8D8E1FD8A"
+                    },
+                    "message": {
+                      "messageContextInfo": {
+                        "messageSecret": "lX/+cLHHNfnTTKZi+88mrhoyi6KNuUzWjgfaB0bTfOY="
+                      },
+                      "pollCreationMessage": {
+                        "name": "Poll Name",
+                        "options": [
+                          {
+                            "optionName": "Option 1"
+                          },
+                          {
+                            "optionName": "Option 2"
+                          },
+                          {
+                            "optionName": "Option 3"
+                          }
+                        ],
+                        "selectableOptionsCount": 1
+                      }
+                    },
+                    "messageTimestamp": "1717781848",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendList/{instance}": {
+      "post": {
+        "operationId": "sendList",
+        "summary": "Send List",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send List",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "title",
+                  "description",
+                  "buttonText",
+                  "footerText",
+                  "values"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "{{remoteJid}}"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Title of list"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description for lists"
+                  },
+                  "buttonText": {
+                    "type": "string",
+                    "description": "Text Button"
+                  },
+                  "footerText": {
+                    "type": "string",
+                    "description": "footer list\nhttps://examplelink.com.br"
+                  },
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string",
+                          "description": "title item of list"
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "title": {
+                                "type": "string",
+                                "description": "Title of row"
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Description of row"
+                              },
+                              "rowId": {
+                                "type": "string",
+                                "description": "Id of row"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "delay": {
+                    "type": "integer",
+                    "description": "Presence time in milliseconds before sending message"
+                  },
+                  "linkPreview": {
+                    "type": "boolean",
+                    "description": "Shows a preview of the target website if there's a link within the message"
+                  },
+                  "mentionsEveryOne": {
+                    "type": "boolean",
+                    "description": "Mentioned everyone when the message send"
+                  },
+                  "mentioned": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "{{remoteJID}}"
+                      ]
+                    },
+                    "description": "Numbers to mention"
+                  },
+                  "quoted": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Quoted message ID"
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "conversation": {
+                            "type": "string",
+                            "description": "Quoted message content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key of the message, which identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "messageContextInfo": {
+                          "type": "object",
+                          "properties": {
+                            "messageSecret": {
+                              "type": "string",
+                              "description": "The secret of the message context."
+                            }
+                          },
+                          "description": "Information about the context of the message."
+                        },
+                        "pollCreationMessage": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "The name of the poll."
+                            },
+                            "options": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "optionName": {
+                                    "type": "string",
+                                    "description": "The name of the poll option."
+                                  }
+                                }
+                              },
+                              "description": "The options available in the poll."
+                            },
+                            "selectableOptionsCount": {
+                              "type": "integer",
+                              "description": "The number of options that can be selected in the poll."
+                            }
+                          },
+                          "description": "Details of the poll creation message."
+                        }
+                      },
+                      "description": "The message content, which may include various types of messages like text, images, poll creation, etc."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.net",
+                      "fromMe": true,
+                      "id": "BAE53EC8D8E1FD8A"
+                    },
+                    "message": {
+                      "messageContextInfo": {
+                        "messageSecret": "lX/+cLHHNfnTTKZi+88mrhoyi6KNuUzWjgfaB0bTfOY="
+                      },
+                      "pollCreationMessage": {
+                        "name": "Poll Name",
+                        "options": [
+                          {
+                            "optionName": "Option 1"
+                          },
+                          {
+                            "optionName": "Option 2"
+                          },
+                          {
+                            "optionName": "Option 3"
+                          }
+                        ],
+                        "selectableOptionsCount": 1
+                      }
+                    },
+                    "messageTimestamp": "1717781848",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/sendButtons/{instance}": {
+      "post": {
+        "operationId": "sendList",
+        "summary": "Send Buttons",
+        "tags": [
+          "Message Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send Buttons",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "title",
+                  "description",
+                  "footer",
+                  "buttons"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "{{remoteJid}}"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Title Button"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description for buttons"
+                  },
+                  "footer": {
+                    "type": "string",
+                    "description": "Text Button"
+                  },
+                  "buttons": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string",
+                          "description": "Types: reply,url,call"
+                        },
+                        "displayText": {
+                          "type": "string",
+                          "description": "Text of button"
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "Id button"
+                        }
+                      }
+                    }
+                  },
+                  "delay": {
+                    "type": "integer",
+                    "description": "Presence time in milliseconds before sending message"
+                  },
+                  "linkPreview": {
+                    "type": "boolean",
+                    "description": "Shows a preview of the target website if there's a link within the message"
+                  },
+                  "mentionsEveryOne": {
+                    "type": "boolean",
+                    "description": "Mentioned everyone when the message send"
+                  },
+                  "mentioned": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "{{remoteJID}}"
+                      ]
+                    },
+                    "description": "Numbers to mention"
+                  },
+                  "quoted": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Quoted message ID"
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "conversation": {
+                            "type": "string",
+                            "description": "Quoted message content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote Jid."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key of the message, which identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "messageContextInfo": {
+                          "type": "object",
+                          "properties": {
+                            "messageSecret": {
+                              "type": "string",
+                              "description": "The secret of the message context."
+                            }
+                          },
+                          "description": "Information about the context of the message."
+                        },
+                        "pollCreationMessage": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "The name of the poll."
+                            },
+                            "options": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "optionName": {
+                                    "type": "string",
+                                    "description": "The name of the poll option."
+                                  }
+                                }
+                              },
+                              "description": "The options available in the poll."
+                            },
+                            "selectableOptionsCount": {
+                              "type": "integer",
+                              "description": "The number of options that can be selected in the poll."
+                            }
+                          },
+                          "description": "Details of the poll creation message."
+                        }
+                      },
+                      "description": "The message content, which may include various types of messages like text, images, poll creation, etc."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    }
+                  },
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.net",
+                      "fromMe": true,
+                      "id": "BAE53EC8D8E1FD8A"
+                    },
+                    "message": {
+                      "messageContextInfo": {
+                        "messageSecret": "lX/+cLHHNfnTTKZi+88mrhoyi6KNuUzWjgfaB0bTfOY="
+                      },
+                      "pollCreationMessage": {
+                        "name": "Poll Name",
+                        "options": [
+                          {
+                            "optionName": "Option 1"
+                          },
+                          {
+                            "optionName": "Option 2"
+                          },
+                          {
+                            "optionName": "Option 3"
+                          }
+                        ],
+                        "selectableOptionsCount": 1
+                      }
+                    },
+                    "messageTimestamp": "1717781848",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/whatsappNumbers/{instance}": {
+      "post": {
+        "operationId": "whatsappNumbers",
+        "summary": "WhatsApp Numbers",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Check if numbers are on WhatsApp",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "numbers": {
+                    "type": "array",
+                    "description": "Phone numbers (with country code) to be checked",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "exists": {
+                        "type": "boolean",
+                        "description": "Indicates whether the WhatsApp account exists."
+                      },
+                      "jid": {
+                        "type": "string",
+                        "description": "The JID of the WhatsApp account."
+                      },
+                      "number": {
+                        "type": "string",
+                        "description": "The phone number associated with the WhatsApp account."
+                      }
+                    }
+                  },
+                  "description": "Array of objects representing WhatsApp account existence information.",
+                  "example": [
+                    {
+                      "exists": true,
+                      "jid": "553198296801@s.whatsapp.net",
+                      "number": "553198296801"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/markMessageAsRead/{instance}": {
+      "post": {
+        "operationId": "markMessageAsRead",
+        "summary": "Mark Message As Read",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Mark message as read",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "readMessages"
+                ],
+                "properties": {
+                  "readMessages": {
+                    "type": "array",
+                    "description": "Messages to be mark as read",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "Chat contact or group remote JID"
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "If the message was sent by the instance owner or the contact"
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "Message ID"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A brief message describing the action performed."
+                    },
+                    "read": {
+                      "type": "string",
+                      "description": "The status of the read action."
+                    }
+                  },
+                  "example": {
+                    "message": "Read messages",
+                    "read": "success"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/markChatUnread/{instance}": {
+      "post": {
+        "operationId": "markMessageAsRead",
+        "summary": "Mark Message As Unread",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Mark message as read",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "lastMessage",
+                  "chat"
+                ],
+                "properties": {
+                  "lastMessage": {
+                    "type": "array",
+                    "description": "Messages to be mark as unread",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "Chat contact or group remote JID"
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "If the message was sent by the instance owner or the contact"
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "Message ID"
+                        }
+                      }
+                    }
+                  },
+                  "chat": {
+                    "type": "string",
+                    "description": "remoteJid here"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "A brief message describing the action performed."
+                    },
+                    "read": {
+                      "type": "string",
+                      "description": "The status of the read action."
+                    }
+                  },
+                  "example": {
+                    "message": "Read messages",
+                    "read": "success"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/archiveChat/{instance}": {
+      "post": {
+        "operationId": "archiveChat",
+        "summary": "Archive Chat",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Archive Chat",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "lastMessage",
+                  "archive",
+                  "chat"
+                ],
+                "properties": {
+                  "lastMessage": {
+                    "type": "object",
+                    "description": "Messages to be mark as read",
+                    "required": [
+                      "key"
+                    ],
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "required": [
+                          "remoteJid",
+                          "fromMe",
+                          "id"
+                        ],
+                        "properties": {
+                          "remoteJid": {
+                            "type": "string",
+                            "description": "Chat contact or group remote JID"
+                          },
+                          "fromMe": {
+                            "type": "boolean",
+                            "description": "If the message was sent by the instance owner or the contact"
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "Message ID"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "archive": {
+                    "type": "boolean",
+                    "description": "Whether to archive the chat or not"
+                  },
+                  "chat": {
+                    "type": "string",
+                    "description": "remoteJid here"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "chatId": {
+                      "type": "string",
+                      "description": "The ID of the chat."
+                    },
+                    "archived": {
+                      "type": "boolean",
+                      "description": "Indicates whether the chat is archived."
+                    }
+                  },
+                  "example": {
+                    "chatId": "553198296801@s.whatsapp.net",
+                    "archived": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/deleteMessageForEveryone/{instance}": {
+      "delete": {
+        "operationId": "deleteMessageForEveryone",
+        "summary": "Delete Message For Everyone",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Delete Message For Everyone",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "remoteJid",
+                  "fromMe",
+                  "paticipant"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Message ID"
+                  },
+                  "remoteJid": {
+                    "type": "string",
+                    "description": "Chat contact or group remote JID"
+                  },
+                  "fromMe": {
+                    "type": "boolean",
+                    "description": "If the message was sent by the instance owner or the contact"
+                  },
+                  "participant": {
+                    "type": "string",
+                    "description": "Participant for group messages only TODO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "remoteJid": {
+                          "type": "string",
+                          "description": "The remote JID (Jabber ID) of the WhatsApp account."
+                        },
+                        "fromMe": {
+                          "type": "boolean",
+                          "description": "Indicates whether the message was sent by the user."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the message."
+                        }
+                      },
+                      "description": "The key that identifies the message in the chat."
+                    },
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "protocolMessage": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "object",
+                              "properties": {
+                                "remoteJid": {
+                                  "type": "string",
+                                  "description": "The remote JID (Jabber ID) of the WhatsApp account in the referenced message."
+                                },
+                                "fromMe": {
+                                  "type": "boolean",
+                                  "description": "Indicates whether the referenced message was sent by the user."
+                                },
+                                "id": {
+                                  "type": "string",
+                                  "description": "The ID of the referenced message."
+                                }
+                              },
+                              "description": "The key that identifies the referenced message."
+                            },
+                            "type": {
+                              "type": "string",
+                              "description": "The type of protocol message, e.g., 'REVOKE'."
+                            }
+                          },
+                          "description": "Details of the protocol message."
+                        }
+                      },
+                      "description": "The content of the message."
+                    },
+                    "messageTimestamp": {
+                      "type": "string",
+                      "description": "The timestamp of the message, represented as a string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the message, such as sent, received, or pending."
+                    }
+                  },
+                  "description": "Schema representing a WhatsApp protocol message, including the key, message content, timestamp, and status.",
+                  "example": {
+                    "key": {
+                      "remoteJid": "553198296801@s.whatsapp.com",
+                      "fromMe": true,
+                      "id": "BAE5EABBD912C4E2"
+                    },
+                    "message": {
+                      "protocolMessage": {
+                        "key": {
+                          "remoteJid": "553198296801@s.whatsapp.com",
+                          "fromMe": true,
+                          "id": "BAE52B567D0E3DD8"
+                        },
+                        "type": "REVOKE"
+                      }
+                    },
+                    "messageTimestamp": "1718108455",
+                    "status": "PENDING"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/sendPresence/{instance}": {
+      "post": {
+        "operationId": "sendPresence",
+        "summary": "Send Presence",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Send Presence (typing...)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "options"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Receiver phone number with country code"
+                  },
+                  "options": {
+                    "type": "object",
+                    "required": [
+                      "delay",
+                      "presence",
+                      "number"
+                    ],
+                    "properties": {
+                      "delay": {
+                        "type": "integer",
+                        "description": "Presence display time in milliseconds"
+                      },
+                      "presence": {
+                        "type": "string",
+                        "description": "Presence type",
+                        "enum": [
+                          "composing",
+                          "recording"
+                        ]
+                      },
+                      "number": {
+                        "type": "string",
+                        "description": "Number contact"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/fetchProfilePictureUrl/{instance}": {
+      "post": {
+        "operationId": "fetchProfilePictureUrl",
+        "summary": "Fetch Profile Picture URL",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Fetch Profile Picture URL",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Number to fetch profile picture URL: {{remoteJid}}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "wuid": {
+                      "type": "string",
+                      "description": "The WhatsApp User ID (WUID)."
+                    },
+                    "profilePictureUrl": {
+                      "type": "string",
+                      "description": "URL of the user's profile picture."
+                    }
+                  },
+                  "example": {
+                    "wuid": "553198296801@s.whatsapp.net",
+                    "profilePictureUrl": "https://pps.whatsapp.net/v/t61.2..."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/findContacts/{instance}": {
+      "post": {
+        "operationId": "findContacts",
+        "summary": "Find Contacts",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Here it is possible to list all contacts or just one,using the 'where' option.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "where"
+                ],
+                "properties": {
+                  "where": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Contact number: optional"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/getBase64FromMediaMessage/{instance}": {
+      "post": {
+        "operationId": "getBase64FromMediaMessage",
+        "summary": "Get Base64 From Media Message",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Get base64 from media message",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "message",
+                  "convertToMp4"
+                ],
+                "properties": {
+                  "message": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Message ID"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "convertToMp4": {
+                    "type": "boolean",
+                    "description": "Convert video to MP4, for video only"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/findMessages/{instance}": {
+      "post": {
+        "operationId": "findMessages",
+        "summary": "Find Messages",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Find all messages",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "where": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "object",
+                        "properties": {
+                          "remoteJid": {
+                            "type": "string",
+                            "description": "Contact or group remote JID"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/findStatusMessage/{instance}": {
+      "post": {
+        "operationId": "findStatusMessage",
+        "summary": "Find Status Message",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Find status message",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "where"
+                ],
+                "properties": {
+                  "where": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "MongoDB message ID"
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "Message ID (from WhatsApp)"
+                      },
+                      "remoteJid": {
+                        "type": "string",
+                        "description": "Contact or group remote JID"
+                      },
+                      "fromMe": {
+                        "type": "boolean",
+                        "description": "Whether the message is from the instance owner or not"
+                      }
+                    }
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Limit for the return"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/updateMessage/{instance}": {
+      "post": {
+        "operationId": "updateMessage",
+        "summary": "Update Message",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Update message",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number",
+                  "text",
+                  "key"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "integer",
+                    "description": "Receiver phone number with country code"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "New message content"
+                  },
+                  "key": {
+                    "type": "object",
+                    "properties": {
+                      "remoteJid": {
+                        "type": "string",
+                        "description": "Chat contact or group remote JID"
+                      },
+                      "fromMe": {
+                        "type": "boolean",
+                        "description": "If the message was sent by the instance owner or not"
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "Message ID"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/findChats/{instance}": {
+      "post": {
+        "operationId": "findChats",
+        "summary": "Find Chats",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Find all chats",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/fetchBusinessProfile/{instance}": {
+      "post": {
+        "operationId": "fetchBusinessProfile",
+        "summary": "Fetch Business Profile",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Fetch business profile from phone number",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Phone number with country code"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/fetchProfile/{instance}": {
+      "post": {
+        "operationId": "fetchBusinessProfile",
+        "summary": "Fetch Business Profile",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Fetch profile from phone number",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "number"
+                ],
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "Phone number with country code"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/updateProfileName/{instance}": {
+      "post": {
+        "operationId": "updateProfileName",
+        "summary": "Update Profile Name",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Update profile name",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "New name for profile"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/updateProfileStatus/{instance}": {
+      "post": {
+        "operationId": "updateProfileStatus",
+        "summary": "Update Profile Status",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Update profile status",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "description": "New status for profile"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/updateProfilePicture/{instance}": {
+      "post": {
+        "operationId": "updateProfilePicture",
+        "summary": "Update Profile Picture",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Update profile picture",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "picture"
+                ],
+                "properties": {
+                  "picture": {
+                    "type": "string",
+                    "description": "New spicture URL"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/removeProfilePicture/{instance}": {
+      "delete": {
+        "operationId": "removeProfilePicture",
+        "summary": "Remove Profile Picture",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name instance",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Update profile picture",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/fetchPrivacySettings/{instance}": {
+      "get": {
+        "operationId": "fetchPrivacySettings",
+        "summary": "Fetch Privacy Settings",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Fetch privacy settings",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/chat/updatePrivacySettings/{instance}": {
+      "post": {
+        "operationId": "updatePrivacySettings",
+        "summary": "Update Privacy Settings",
+        "tags": [
+          "Chat Controller"
+        ],
+        "deprecated": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "Name of the instance ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Update privacy settings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "readreceipts",
+                  "profile",
+                  "status",
+                  "online",
+                  "last",
+                  "groupadd"
+                ],
+                "properties": {
+                  "readreceipts": {
+                    "type": "string",
+                    "enum": [
+                      "all",
+                      "none"
+                    ]
+                  },
+                  "profile": {
+                    "type": "string",
+                    "enum": [
+                      "all",
+                      "contacts",
+                      "contact_blacklist",
+                      "none"
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "all",
+                      "contacts",
+                      "contact_blacklist",
+                      "none"
+                    ]
+                  },
+                  "online": {
+                    "type": "string",
+                    "enum": [
+                      "all",
+                      "match_last_seen"
+                    ]
+                  },
+                  "last": {
+                    "type": "string",
+                    "enum": [
+                      "all",
+                      "contacts",
+                      "contact_blacklist",
+                      "none"
+                    ]
+                  },
+                  "groupadd": {
+                    "type": "string",
+                    "enum": [
+                      "all",
+                      "contacts",
+                      "contact_blacklist"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/group/create/{instance}": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Create Group",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "subject": "Test 02",
+                  "description": "optional",
+                  "participants": [
+                    "5531900000000",
+                    "5531900000000"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/updateGroupPicture/{instance}": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Update Group Picture",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "image": "https://evolution-api.com/files/sticker.png"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/updateGroupSubject/{instance}": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Update Group Subject",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "subject": "Group Name or Subject"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/updateGroupDescription/{instance}": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Update Group Description",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "description": "Group Description or Rules"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/inviteCode/{instance}": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Fetch Invite Code",
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/revokeInviteCode/{instance}": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Revoke Invite Code",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/sendInvite/{instance}": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Send Invite Url",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "groupJid": "{{groupJid}}",
+                  "description": "Access this link to join my WhatsApp group:",
+                  "numbers": [
+                    "{{remoteJid}}"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/inviteInfo/{instance}": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Find Group by Invite Code",
+        "parameters": [
+          {
+            "name": "inviteCode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{inviteCode}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/findGroupInfos/{instance}": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Find Group by Jid",
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/fetchAllGroups/{instance}": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Fetch All Groups",
+        "parameters": [
+          {
+            "name": "getParticipants",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "example": "false"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/participants/{instance}": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Find Participants",
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/updateParticipant/{instance}": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Update Participant",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "action": "add",
+                  "participants": [
+                    "5531900000000",
+                    "5531911111111",
+                    "5531922222222"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/updateSetting/{instance}": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Update Setting",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "action": "not_announcement"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/toggleEphemeral/{instance}": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Toggle Ephemeral",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "expiration": 0
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/group/leaveGroup/{instance}": {
+      "delete": {
+        "tags": [
+          "Group"
+        ],
+        "summary": "Leave Group",
+        "parameters": [
+          {
+            "name": "groupJid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "{{groupJid}}"
+            }
+          },
+          {
+            "name": "instance",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "operationId": "getEvoInfo",
+        "summary": "Get information about your EvolutionAPI",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "instance",
+            "in": "path",
+            "required": true,
+            "description": "ID of the instance to connect",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "Get information about your EvolutionAPI",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "The HTTP status of the response"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Descriptive message about the current state of the API"
+                    },
+                    "version": {
+                      "type": "string",
+                      "description": "The current version of the API"
+                    },
+                    "swagger": {
+                      "type": "string",
+                      "description": "URL to the API's Swagger documentation"
+                    },
+                    "manager": {
+                      "type": "string",
+                      "description": "URL to the API manager"
+                    },
+                    "documentation": {
+                      "type": "string",
+                      "description": "URL to the detailed API documentation"
+                    }
+                  },
+                  "example": {
+                    "status": 200,
+                    "message": "Welcome to the Evolution API, it is working!",
+                    "version": "1.7.4",
+                    "swagger": "http://example.evolution-api.com/docs",
+                    "manager": "http://example.evolution-api.com/manager",
+                    "documentation": "https://doc.evolution-api.com"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "apikey",
+        "description": "Your authorization key header"
+      }
+    }
+  }
+}

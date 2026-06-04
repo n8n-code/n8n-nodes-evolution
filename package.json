@@ -1,0 +1,35 @@
+{
+  "name": "@n8n-dev/n8n-nodes-evolution",
+  "version": "1.0.2",
+  "description": "n8n community node for Evolution API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"no tests yet\""
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/nodes/credentials/n8n-nodes-evolutionApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/n8n-nodes-evolution.node.js"
+    ]
+  },
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "n8n-nodes-evolution",
+    "evolution"
+  ],
+  "author": "kelvinzer0",
+  "license": "MIT",
+  "devDependencies": {
+    "n8n-workflow": "*",
+    "typescript": "^5.6.0"
+  },
+  "dependencies": {
+    "@kelvinzer0/n8n-openapi-node-ultimate": "github:kelvinzer0/n8n-openapi-node-ultimate"
+  }
+}
