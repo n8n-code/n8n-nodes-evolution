@@ -1,5 +1,5 @@
 import { INodeType, INodeTypeDescription } from 'n8n-workflow';
-import { N8NPropertiesBuilder } from '../lib';
+import { N8NPropertiesBuilder } from '../../lib';
 import * as doc from '../openapi.json';
 
 const parser = new N8NPropertiesBuilder(doc);
