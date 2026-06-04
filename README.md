@@ -2,7 +2,7 @@
 
 > n8n community node for **Evolution** API
 
-n8n community node for Evolution API (WhatsApp)
+n8n community node for Evolution API
 
 ## Installation
 

@@ -15,7 +15,7 @@ export class Evolution implements INodeType {
 		group: ['input'],
 		version: 1,
 		subtitle: '={{\$parameter["operation"] + ": " + \$parameter["resource"]}}',
-		description: 'n8n community node for Evolution API (WhatsApp)',
+		description: 'n8n community node for Evolution API',
 		defaults: { name: 'Evolution' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
