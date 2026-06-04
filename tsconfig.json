@@ -13,12 +13,10 @@
     "outDir": "./dist",
     "rootDir": ".",
     "declaration": true,
-    "sourceMap": true,
-    "resolveJsonModule": true
+    "sourceMap": true
   },
   "include": [
-    "**/*.ts",
-    "types/**/*.d.ts"
+    "nodes/**/*.ts"
   ],
   "exclude": [
     "node_modules",
