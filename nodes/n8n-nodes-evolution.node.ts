@@ -1,4 +1,4 @@
-import { INodeType, INodeTypeDescription, NodeConnectionType } from 'n8n-workflow';
+import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { N8NPropertiesBuilder } from '@kelvinzer0/n8n-openapi-node-ultimate';
 import * as doc from '../openapi.json';
 
@@ -15,8 +15,8 @@ export class Evolution implements INodeType {
     subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
     description: 'n8n community node for Evolution API',
     defaults: { name: 'Evolution' },
-    inputs: [NodeConnectionType.Main],
-    outputs: [NodeConnectionType.Main],
+    inputs: ['main'],
+    outputs: ['main'],
     credentials: [{ name: 'n8n-nodes-evolutionApi', required: true }],
     requestDefaults: {
       headers: { Accept: 'application/json', 'Content-Type': 'application/json' },

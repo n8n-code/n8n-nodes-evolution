@@ -1,14 +1,14 @@
 import {
   IAuthenticateGeneric,
   ICredentialType,
-  INodePropertyDescription,
+  INodeProperties,
 } from 'n8n-workflow';
 
 export class EvolutionApi implements ICredentialType {
   name = 'n8n-nodes-evolutionApi';
   displayName = 'Evolution API';
   documentationUrl = '';
-  properties: INodePropertyDescription[] = [
+  properties: INodeProperties[] = [
     {
       displayName: 'Base URL',
       name: 'url',
