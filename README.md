@@ -2,7 +2,7 @@
 
 > n8n community node for **Evolution** API
 
-n8n community node for Evolution API
+n8n community node for Evolution API - WhatsApp Business API
 
 ## Installation
 
@@ -13,7 +13,7 @@ npm install @n8n-dev/n8n-nodes-evolution
 ## Usage
 
 1. In n8n: **Settings → Community Nodes → Install** → `@n8n-dev/n8n-nodes-evolution`
-2. Add credentials: **Evolution API** → Base URL + API Key
+2. Add credentials: **Evolution API** → API Key
 3. Use the node in your workflows
 
 ## Auto-generated

@@ -1,0 +1,20 @@
+{
+  "node": "n8n-nodes-evolution",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": [
+    "Development"
+  ],
+  "resources": {
+    "primaryDocumentation": [
+      {
+        "url": "https://github.com/kelvinzer0/n8n-nodes-evolution"
+      }
+    ],
+    "credentialDocumentation": [
+      {
+        "url": "https://github.com/kelvinzer0/n8n-nodes-evolution?tab=readme-ov-file#credentials"
+      }
+    ]
+  }
+}
