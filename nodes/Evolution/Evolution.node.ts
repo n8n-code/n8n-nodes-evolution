@@ -10,7 +10,7 @@ import { defaultDescription } from './resources/default';
 export class Evolution implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Evolution',
-		name: 'n8n-nodes-evolution',
+		name: 'N8nDevEvolution',
 		icon: { light: 'file:./evolution.svg', dark: 'file:./evolution.dark.svg' },
 		group: ['input'],
 		version: 1,
@@ -22,7 +22,7 @@ export class Evolution implements INodeType {
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
-				name: 'n8n-nodes-evolutionApi',
+				name: 'N8nDevEvolutionApi',
 				required: true,
 			},
 		],

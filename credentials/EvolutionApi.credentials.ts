@@ -7,7 +7,7 @@ import type {
 } from 'n8n-workflow';
 
 export class EvolutionApi implements ICredentialType {
-	name = 'n8n-nodes-evolutionApi';
+	name = 'N8nDevEvolutionApi';
 
 	displayName = 'Evolution API';
 
