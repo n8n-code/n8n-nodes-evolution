@@ -1,6 +1,6 @@
 {
   "name": "@n8n-dev/n8n-nodes-evolution",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "n8n community node for Evolution API",
   "main": "index.js",
   "scripts": {
@@ -14,10 +14,10 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/nodes/credentials/n8n-nodes-evolutionApi.credentials.js"
+      "dist/nodes/credentials/n8n-nodes-evolutionApi.credentials"
     ],
     "nodes": [
-      "dist/nodes/n8n-nodes-evolution.node.js"
+      "dist/nodes/n8n-nodes-evolution.node"
     ]
   },
   "keywords": [
