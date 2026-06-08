@@ -308,6 +308,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Whatsapp Numbers"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /chat/markMessageAsRead/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -357,6 +382,31 @@ export const chatControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ JSON.parse($value) }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Mark Message As Read"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -472,6 +522,31 @@ export const chatControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ $value }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Archive Chat"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -626,6 +701,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Delete Message For Everyone"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /chat/sendPresence/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -714,6 +814,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Send Presence"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /chat/fetchProfilePictureUrl/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -777,6 +902,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Fetch Profile Picture Url"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /chat/findContacts/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -825,6 +975,31 @@ export const chatControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ JSON.parse($value) }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Find Contacts"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -927,6 +1102,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Get Base 64 From Media Message"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /chat/findMessages/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -974,6 +1174,31 @@ export const chatControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ JSON.parse($value) }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Find Messages"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -1061,6 +1286,31 @@ export const chatControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ $value }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Find Status Message"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -1189,6 +1439,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Update Message"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /chat/findChats/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1214,6 +1489,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			"description": "Name instance",
 			"default": "",
 			"type": "string",
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Find Chats"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
 			"displayOptions": {
 				"show": {
 					"resource": [
@@ -1275,6 +1575,31 @@ export const chatControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ $value }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Fetch Business Profile"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -1352,6 +1677,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Update Profile Name"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /chat/updateProfileStatus/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1401,6 +1751,31 @@ export const chatControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ $value }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Update Profile Status"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -1478,6 +1853,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Update Profile Picture"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "DELETE /chat/removeProfilePicture/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1515,6 +1915,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Remove Profile Picture"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "GET /chat/fetchPrivacySettings/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1540,6 +1965,31 @@ export const chatControllerDescription: INodeProperties[] = [
 			"description": "Name of the instance ",
 			"default": "",
 			"type": "string",
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Fetch Privacy Settings"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
 			"displayOptions": {
 				"show": {
 					"resource": [
@@ -1813,6 +2263,31 @@ export const chatControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ $value }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chat Controller"
+					],
+					"operation": [
+						"Update Privacy Settings"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {

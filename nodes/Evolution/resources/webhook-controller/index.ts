@@ -209,6 +209,31 @@ export const webhookControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Webhook Controller"
+					],
+					"operation": [
+						"Set Webhook"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "GET /webhook/find/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -234,6 +259,31 @@ export const webhookControllerDescription: INodeProperties[] = [
 			"description": "Name of the instance",
 			"default": "",
 			"type": "string",
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Webhook Controller"
+					],
+					"operation": [
+						"Find Webhook"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
 			"displayOptions": {
 				"show": {
 					"resource": [

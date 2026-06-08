@@ -1,11 +1,20 @@
 {
   "name": "@n8n-dev/n8n-nodes-evolution",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "n8n community node for Evolution API",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://n8n-code.github.io/n8n-dev/#/n8n-nodes-evolution",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n",
+    "n8n-community-node",
+    "n8n-node",
+    "n8n-community-node-package",
+    "openapi",
+    "swagger",
+    "api",
+    "automation",
+    "workflow",
+    "evolution"
   ],
   "author": {
     "name": "kelvinzer0",
@@ -13,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kelvinzer0/n8n-nodes-evolution.git"
+    "url": "https://github.com/n8n-code/n8n-nodes-evolution.git"
   },
   "scripts": {
     "build": "n8n-node build",
@@ -42,7 +51,7 @@
   },
   "devDependencies": {
     "@n8n/node-cli": "*",
-    "eslint": "9.39.4",
+    "eslint": "*",
     "prettier": "3.8.3",
     "release-it": "20.2.0",
     "typescript": "5.9.3"

@@ -9,14 +9,14 @@ import { defaultDescription } from './resources/default';
 
 export class Evolution implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Evolution',
+		displayName: 'evolution',
 		name: 'N8nDevEvolution',
-		icon: { light: 'file:./evolution.svg', dark: 'file:./evolution.dark.svg' },
+		icon: { light: 'file:./evolution.png', dark: 'file:./evolution.dark.png' },
 		group: ['input'],
 		version: 1,
 		subtitle: '={{\$parameter["operation"] + ": " + \$parameter["resource"]}}',
 		description: 'n8n community node for Evolution API',
-		defaults: { name: 'Evolution' },
+		defaults: { name: 'evolution' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],

@@ -969,6 +969,31 @@ export const instanceControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Instance Controller"
+					],
+					"operation": [
+						"Create Instance"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "GET /instance/fetchInstances",
 			"name": "operation",
 			"type": "notice",
@@ -1024,6 +1049,31 @@ export const instanceControllerDescription: INodeProperties[] = [
 					"property": "instanceId",
 					"value": "={{ $value }}",
 					"propertyInDotNotation": false
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Instance Controller"
+					],
+					"operation": [
+						"Fetch Instances"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -1100,6 +1150,31 @@ export const instanceControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Instance Controller"
+					],
+					"operation": [
+						"Instance Connect"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "PUT /instance/restart/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1125,6 +1200,31 @@ export const instanceControllerDescription: INodeProperties[] = [
 			"description": "Name of the instance to restart",
 			"default": "",
 			"type": "string",
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Instance Controller"
+					],
+					"operation": [
+						"Restart Instance"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
 			"displayOptions": {
 				"show": {
 					"resource": [
@@ -1174,6 +1274,31 @@ export const instanceControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Instance Controller"
+					],
+					"operation": [
+						"Connection State"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "DELETE /instance/logout/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1211,6 +1336,31 @@ export const instanceControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Instance Controller"
+					],
+					"operation": [
+						"Logout Instance"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "DELETE /instance/delete/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1236,6 +1386,31 @@ export const instanceControllerDescription: INodeProperties[] = [
 			"description": "Name of the instance to delete",
 			"default": "",
 			"type": "string",
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Instance Controller"
+					],
+					"operation": [
+						"Delete Instance"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
 			"displayOptions": {
 				"show": {
 					"resource": [
@@ -1306,6 +1481,31 @@ export const instanceControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ $value }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Instance Controller"
+					],
+					"operation": [
+						"Set Presence"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {

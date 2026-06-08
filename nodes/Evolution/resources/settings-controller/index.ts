@@ -248,4 +248,29 @@ export const settingsControllerDescription: INodeProperties[] = [
 				}
 			}
 		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Settings Controller"
+					],
+					"operation": [
+						"Set Settings"
+					]
+				}
+			}
+		},
 ];

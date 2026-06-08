@@ -351,6 +351,31 @@ export const messageControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send Text"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /message/sendMedia/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -668,6 +693,31 @@ export const messageControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send Media"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /message/sendWhatsAppAudio/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -881,6 +931,31 @@ export const messageControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send Whats App Audio"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /message/sendSticker/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1080,6 +1155,31 @@ export const messageControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ JSON.parse($value) }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send Sticker"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -1313,6 +1413,31 @@ export const messageControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ JSON.parse($value) }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send Status"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -1618,6 +1743,31 @@ export const messageControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send Location"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /message/sendContact/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1706,6 +1856,31 @@ export const messageControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send Contact"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "POST /message/sendReaction/{instance}",
 			"name": "operation",
 			"type": "notice",
@@ -1778,6 +1953,31 @@ export const messageControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ $value }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send Reaction"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -2043,6 +2243,31 @@ export const messageControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ JSON.parse($value) }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send Poll"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {
@@ -2359,6 +2584,31 @@ export const messageControllerDescription: INodeProperties[] = [
 					"propertyInDotNotation": false,
 					"type": "body",
 					"value": "={{ JSON.parse($value) }}"
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Message Controller"
+					],
+					"operation": [
+						"Send List"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Apikey",
+			"name": "security_apikeyauth",
+			"type": "string",
+			"default": "",
+			"description": "Your authorization key header",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"apikey": "={{ $value }}"
+					}
 				}
 			},
 			"displayOptions": {

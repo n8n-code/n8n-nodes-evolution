@@ -8,12 +8,12 @@
   "resources": {
     "primaryDocumentation": [
       {
-        "url": "https://github.com/kelvinzer0/n8n-nodes-evolution"
+        "url": "https://github.com/n8n-code/n8n-nodes-evolution"
       }
     ],
     "credentialDocumentation": [
       {
-        "url": "https://github.com/kelvinzer0/n8n-nodes-evolution?tab=readme-ov-file#credentials"
+        "url": "https://github.com/n8n-code/n8n-nodes-evolution?tab=readme-ov-file#credentials"
       }
     ]
   }
