@@ -106,7 +106,7 @@ export const webhookControllerDescription: INodeProperties[] = [
 		},
 		{
 			"required": true,
-			"displayName": "Url",
+			"displayName": "URL",
 			"name": "url",
 			"type": "string",
 			"default": "",

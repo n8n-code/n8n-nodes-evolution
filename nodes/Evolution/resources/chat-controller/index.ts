@@ -75,8 +75,8 @@ export const chatControllerDescription: INodeProperties[] = [
 					}
 				},
 				{
-					"name": "Fetch Profile Picture Url",
-					"value": "Fetch Profile Picture Url",
+					"name": "Fetch Profile Picture URL",
+					"value": "Fetch Profile Picture URL",
 					"action": "Fetch Profile Picture URL",
 					"description": "Fetch Profile Picture URL",
 					"routing": {
@@ -599,7 +599,7 @@ export const chatControllerDescription: INodeProperties[] = [
 		},
 		{
 			"required": true,
-			"displayName": "Id",
+			"displayName": "ID",
 			"name": "id",
 			"type": "string",
 			"default": "",
@@ -852,7 +852,7 @@ export const chatControllerDescription: INodeProperties[] = [
 						"Chat Controller"
 					],
 					"operation": [
-						"Fetch Profile Picture Url"
+						"Fetch Profile Picture URL"
 					]
 				}
 			}
@@ -870,7 +870,7 @@ export const chatControllerDescription: INodeProperties[] = [
 						"Chat Controller"
 					],
 					"operation": [
-						"Fetch Profile Picture Url"
+						"Fetch Profile Picture URL"
 					]
 				}
 			}
@@ -896,7 +896,7 @@ export const chatControllerDescription: INodeProperties[] = [
 						"Chat Controller"
 					],
 					"operation": [
-						"Fetch Profile Picture Url"
+						"Fetch Profile Picture URL"
 					]
 				}
 			}
@@ -921,7 +921,7 @@ export const chatControllerDescription: INodeProperties[] = [
 						"Chat Controller"
 					],
 					"operation": [
-						"Fetch Profile Picture Url"
+						"Fetch Profile Picture URL"
 					]
 				}
 			}

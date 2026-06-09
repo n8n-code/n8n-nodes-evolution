@@ -644,7 +644,7 @@ export const instanceControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
-			"displayName": "Chatwoot Account Id",
+			"displayName": "Chatwoot Account ID",
 			"name": "chatwootAccountId",
 			"type": "number",
 			"default": 0,
@@ -694,7 +694,7 @@ export const instanceControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
-			"displayName": "Chatwoot Url",
+			"displayName": "Chatwoot URL",
 			"name": "chatwootUrl",
 			"type": "string",
 			"default": "",
@@ -1038,7 +1038,7 @@ export const instanceControllerDescription: INodeProperties[] = [
 			}
 		},
 		{
-			"displayName": "Instance Id",
+			"displayName": "Instance ID",
 			"name": "instanceId",
 			"description": "ID of the instance to be fetched",
 			"default": "",

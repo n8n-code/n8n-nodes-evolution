@@ -53,15 +53,103 @@ That's it. No configuration files. No code. It just works.
 
 ## Resources
 
-| Resource | Operations |
-|----------|------------|
-| Instance Controller | POST Create Instance, GET Fetch Instances, GET Instances Connect, PUT Restart Instance, GET Connection State, DELETE Logout Instance, DELETE Delete Instance, POST Set Presence |
-| Webhook Controller | POST Set Webhook, GET Find Webhook |
-| Settings Controller | POST Set Settings |
-| Message Controller | POST Send Text, POST Send Media, POST Send WhatsApp Audio, POST Send Sticker, POST Send Status, POST Send Location, POST Send Contact, POST Send Reaction, POST Send Poll, POST Send List |
-| Chat Controller | POST WhatsApp Numbers, POST Mark Message As Read, POST Archive Chat, DELETE Delete Message For Everyone, POST Send Presence, POST Fetch Profile Picture URL, POST Find Contacts, POST Get Base64 From Media Message, POST Find Messages, POST Find Status Message, POST Update Message, POST Find Chats, POST Fetch Business Profile, POST Update Profile Name, POST Update Profile Status, POST Update Profile Picture, DELETE Remove Profile Picture, GET Fetch Privacy Settings, POST Update Privacy Settings |
-| Group | POST Create Group, POST Update Group Picture, POST Update Group Subject, POST Update Group Description, GET Fetch Invite Code, POST Revoke Invite Code, POST Send Invite Url, GET Find Group by Invite Code, GET Find Group by Jid, GET Fetch All Groups, GET Find Participants, POST Update Participant, POST Update Setting, POST Toggle Ephemeral, DELETE Leave Group |
-| Default | GET Get information about your EvolutionAPI |
+<details>
+<summary><b>Instance Controller</b> (8 operations)</summary>
+
+- Post Create Instance
+- Get Fetch Instances
+- Get Instances Connect
+- Put Restart Instance
+- Get Connection State
+- Delete Logout Instance
+- Delete Instance
+- Post Set Presence
+
+</details>
+
+<details>
+<summary><b>Webhook Controller</b> (2 operations)</summary>
+
+- Post Set WEBHOOK
+- Get Find WEBHOOK
+
+</details>
+
+<details>
+<summary><b>Settings Controller</b> (1 operations)</summary>
+
+- Post Set Settings
+
+</details>
+
+<details>
+<summary><b>Message Controller</b> (10 operations)</summary>
+
+- Post Send Text
+- Post Send Media
+- Post Send WhatsApp Audio
+- Post Send Sticker
+- Post Send Status
+- Post Send Location
+- Post Send Contact
+- Post Send Reaction
+- Post Send Poll
+- Post Send List
+
+</details>
+
+<details>
+<summary><b>Chat Controller</b> (19 operations)</summary>
+
+- Post WhatsApp Numbers
+- Post Mark Message As Read
+- Post Archive Chat
+- Delete Message For Everyone
+- Post Send Presence
+- Post Fetch Profile Picture URL
+- Post Find Contacts
+- Post Get Base64 From Media Message
+- Post Find Messages
+- Post Find Status Message
+- Post Update Message
+- Post Find Chats
+- Post Fetch Business Profile
+- Post Update Profile Name
+- Post Update Profile Status
+- Post Update Profile Picture
+- Delete Remove Profile Picture
+- Get Fetch Privacy Settings
+- Post Update Privacy Settings
+
+</details>
+
+<details>
+<summary><b>Group</b> (15 operations)</summary>
+
+- Post Create Group
+- Post Update Group Picture
+- Post Update Group Subject
+- Post Update Group Description
+- Get Fetch Invite Code
+- Post Revoke Invite Code
+- Post Send Invite URL
+- Get Find Group by Invite Code
+- Get Find Group by Jid
+- Get Fetch All Groups
+- Get Find Participants
+- Post Update Participant
+- Post Update Setting
+- Post Toggle Ephemeral
+- Delete Leave Group
+
+</details>
+
+<details>
+<summary><b>Default</b> (1 operations)</summary>
+
+- Get information about your EvolutionAPI
+
+</details>
 
 ---
 

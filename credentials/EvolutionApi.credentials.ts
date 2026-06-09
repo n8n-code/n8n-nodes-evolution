@@ -8,7 +8,7 @@ import type {
 export class EvolutionApi implements ICredentialType {
 	name = 'N8nDevEvolutionApi';
 
-	displayName = 'evolution API';
+	displayName = 'Evolution API';
 
 	icon: Icon = { light: 'file:../nodes/Evolution/evolution.png', dark: 'file:../nodes/Evolution/evolution.dark.png' };
 
@@ -22,7 +22,7 @@ export class EvolutionApi implements ICredentialType {
 			default: '',
 			required: true,
 			placeholder: 'https://evolution-example',
-			description: 'The base URL of your evolution API server',
+			description: 'The base URL of your Evolution API server',
 		},
 		{
 			displayName: 'API Key',
