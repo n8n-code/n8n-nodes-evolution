@@ -8,32 +8,32 @@ import { groupDescription } from './resources/group';
 import { defaultDescription } from './resources/default';
 
 export class Evolution implements INodeType {
-	description: INodeTypeDescription = {
-		displayName: 'Evolution',
-		name: 'N8nDevEvolution',
-		icon: { light: 'file:./evolution.png', dark: 'file:./evolution.dark.png' },
-		group: ['input'],
-		version: 1,
-		subtitle: '={{\$parameter["operation"] + ": " + \$parameter["resource"]}}',
-		description: 'n8n community node for Evolution API integration.',
-		defaults: { name: 'Evolution' },
-		usableAsTool: true,
-		inputs: [NodeConnectionTypes.Main],
-		outputs: [NodeConnectionTypes.Main],
-		credentials: [
-			{
-				name: 'N8nDevEvolutionApi',
-				required: true,
-			},
-		],
-		requestDefaults: {
-			baseURL: '={{\$credentials.url}}',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		},
-		properties: [
+        description: INodeTypeDescription = {
+                displayName: 'Evolution',
+                name: 'N8nDevEvolution',
+                icon: { light: 'file:./evolution.png', dark: 'file:./evolution.dark.png' },
+                group: ['input'],
+                version: 1,
+                subtitle: '={{\$parameter["operation"] + ": " + \$parameter["resource"]}}',
+                description: 'n8n community node for Evolution API integration.',
+                defaults: { name: 'Evolution' },
+                usableAsTool: true,
+                inputs: [NodeConnectionTypes.Main],
+                outputs: [NodeConnectionTypes.Main],
+                credentials: [
+                        {
+                                name: 'N8nDevEvolutionApi',
+                                required: true,
+                        },
+                ],
+                requestDefaults: {
+                        baseURL: '={{\$credentials.url}}',
+                        headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json',
+                        },
+                },
+                properties: [
 		{
 			"displayName": "Resource",
 			"name": "resource",
@@ -85,6 +85,6 @@ export class Evolution implements INodeType {
 		...chatControllerDescription,
 		...groupDescription,
 		...defaultDescription
-		],
-	};
+                ],
+        };
 }

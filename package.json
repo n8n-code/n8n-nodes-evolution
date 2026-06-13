@@ -1,6 +1,6 @@
 {
   "name": "@n8n-dev/n8n-nodes-evolution",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "description": "n8n community node for Evolution API integration.",
   "license": "MIT",
   "homepage": "https://n8n-code.github.io/n8n-dev/#/n8n-nodes-evolution",
